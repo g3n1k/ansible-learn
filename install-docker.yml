@@ -1,0 +1,30 @@
+---
+- hosts: server
+  remote_user: root  
+  sudo: yes
+  vars_files:
+    - docker-var.yml
+  tasks: 
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      with_items: [ 'git', 'apt-transport-https', 'ca-certificates', 'curl', 'gnupg2', 'software-properties-common' ]
+
+    - name: Add docker GPG apt key
+      apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+      
+    - name: Add docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch edge
+        state: present
+    
+    - name: Update and install Docker CE
+      apt: update_cache=yes name={{ item }} state=latest
+      with_items: [ "docker-ce", "docker-ce-cli", "containerd.io" ]
+    
+    - name: get and install docker compose
+      shell: "curl -L https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose"
+
+    - name: add docker to user
+      shell: "usermod -aG docker {{ docker_user }}"

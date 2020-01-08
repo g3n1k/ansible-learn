@@ -1,9 +1,9 @@
 [server]
-deb9	ansible_user=ub ansible_host=192.168.1.6 ansible_port=22
-cent8	ansible_user=root ansible_host=192.168.1.5 ansible_port=22 ansible_python_interpreter="/usr/bin/python3"
+deb9	ansible_user=root ansible_host=192.168.1.6 ansible_port=22
+# cent8	ansible_user=root ansible_host=192.168.1.5 ansible_port=22 ansible_python_interpreter="/usr/bin/python3"
 
 [deb]
 deb9
 
-[cent]
-cent8
+# [cent]
+# cent8

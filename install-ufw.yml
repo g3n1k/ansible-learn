@@ -1,0 +1,30 @@
+---
+- hosts: server
+  remote_user: root  
+  sudo: yes
+  tasks:
+    # install basic tools
+    - name: install UFW - Uncomplicated Firewall
+      apt: name=ufw state=latest update_cache=yes
+
+    - name: set loging
+      ufw: logging=on
+    
+    - name: allow port {{ item }}
+      ufw: rule=allow port= {{ item }}
+      with_items: [ '22', '80', '443', '3306' ]
+    
+    # - name: allow port 80 http
+    #   ufw: rule=allow port=80
+
+    # - name: allow port 443 https
+    #   ufw: rule=allow port=80
+
+    # - name: allow port 443 https
+    #   ufw: rule=allow port=80
+
+    # - name: allow port 3306 https
+    #   ufw: rule=allow port=80
+    
+    - name: enable ufw
+      ufw: state=enabled policy=allow
