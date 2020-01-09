@@ -40,6 +40,12 @@ now lets secure with ufw
 ansible-playbook install-ufw.yml -l deb9
 ````
 
+## 05. Setup Fail2ban
+secured again with fail2ban
+````
+ansible-playbook install-fail2ban.yml -l deb9
+````
+
 <!-- ## 05. git clone
 clone repo with ansible-playbook
 
