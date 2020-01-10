@@ -1,7 +1,6 @@
 ---
 - hosts: server
-  remote_user: root  
-  sudo: yes
+  remote_user: root 
   vars_files:
     - docker-var.yml
   tasks: 

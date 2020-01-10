@@ -1,7 +1,6 @@
 ---
 - hosts: server
   remote_user: root  
-  sudo: yes
   tasks:
     # install basic tools
     - name: install UFW - Uncomplicated Firewall

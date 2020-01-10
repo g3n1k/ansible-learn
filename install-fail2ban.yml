@@ -1,7 +1,6 @@
 ---
 - hosts: server
   remote_user: root  
-  sudo: yes
   tasks: 
     - name: Install fail2ban packages
       apt: 

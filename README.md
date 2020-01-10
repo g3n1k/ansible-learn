@@ -45,6 +45,9 @@ secured again with fail2ban
 ````
 ansible-playbook install-fail2ban.yml -l deb9
 ````
+we can read who connect to server with command `sudo tail -f /var/log/auth.log`  
+
+and we can view realtime from fail2ban `sudo tail -f /var/log/fail2ban.log `
 
 <!-- ## 05. git clone
 clone repo with ansible-playbook
