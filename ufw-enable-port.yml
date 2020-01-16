@@ -4,20 +4,26 @@
   vars_files:
     - ufw-var.yml
   tasks:
-    - name: default deny from all
+    - name:  disabled ufw
+      ufw: state=disabled    
+  
+    - name: reset ufw
+      ufw: state=reset
+  
+    - name: enable ufw
+      ufw: state=enabled    
+  
+    - name: default ufw deny all incoming
       ufw: default=deny direction=incoming
 
     - name: allow only ssh from {{ allow_ip }}
       ufw: from_ip={{ allow_ip }} to_port=22 rule=allow
 
-    - name: allow http in from All
-      ufw: to_port=80 rule=allow
-    
-    - name: allow http out from All
-      ufw: to_port=80 rule=allow direction=out
+    - name: allow http in to {{ item }}
+      ufw: to_port={{ item }} rule=allow
+      with_items: "{{ ports }}"
 
-    - name: allow https in from All
-      ufw: to_port=443 rule=allow
-    
-    - name: allow https out from All
-      ufw: to_port=443 rule=allow  direction=out
+    - name: allow http in out from {{ item }}
+      ufw: to_port={{ item }} rule=allow direction=out
+      with_items: "{{ ports }}"
+
