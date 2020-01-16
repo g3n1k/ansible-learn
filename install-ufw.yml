@@ -1,5 +1,5 @@
 ---
-- hosts: server
+- hosts: deb9
   remote_user: root  
   tasks:
     # install basic tools
@@ -8,22 +8,6 @@
 
     - name: set loging
       ufw: logging=on
-    
-    - name: allow port {{ item }}
-      ufw: rule=allow port= {{ item }}
-      with_items: [ '22', '80', '443', '3306' ]
-    
-    # - name: allow port 80 http
-    #   ufw: rule=allow port=80
-
-    # - name: allow port 443 https
-    #   ufw: rule=allow port=80
-
-    # - name: allow port 443 https
-    #   ufw: rule=allow port=80
-
-    # - name: allow port 3306 https
-    #   ufw: rule=allow port=80
     
     - name: enable ufw
       ufw: state=enabled policy=allow

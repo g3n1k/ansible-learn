@@ -21,6 +21,8 @@ filter = sshd
 # the length of time between login attempts for maxretry. 
 findtime = 600
 # attempts from a single ip before a ban is imposed.
-maxretry = 10
+maxretry = 5
 # the number of seconds that a host is banned for.
 bantime = 3600
+# whitelist ip from vpn
+#ignoreip = 192.168.1.4

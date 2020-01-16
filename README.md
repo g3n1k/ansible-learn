@@ -34,13 +34,22 @@ using **docker-var.yml** to store value and calling from `install-docker.yml`
 ansible-playbook install-docker.yml -l deb9
 ````
 
-## 04. Setup ufw to port 22 80 443 3306
-now lets secure with ufw
+## 04. Install ufw
+now lets install ufw
 ````
 ansible-playbook install-ufw.yml -l deb9
 ````
 
-## 05. Setup Fail2ban
+## 05. Setup ufw to allow ssh, http & https 
+config ssh http https
+if you want check systax, add `--check` options
+````
+ansible-playbook ufw-enable-port.yml -i hosts.dev --check
+ansible-playbook ufw-enable-port.yml -i hosts.dev
+````
+
+
+## 06. Setup Fail2ban
 secured again with fail2ban
 ````
 ansible-playbook install-fail2ban.yml -l deb9
@@ -49,9 +58,10 @@ we can read who connect to server with command `sudo tail -f /var/log/auth.log`
 
 and we can view realtime from fail2ban `sudo tail -f /var/log/fail2ban.log `
 
-<!-- ## 05. git clone
+## 05. git clone
 clone repo with ansible-playbook
 
+<!-- 
 ## 06. start stop restart docker-compose
 
-## 07. pull from repo -->
+## 07. pull from repo --> -->
